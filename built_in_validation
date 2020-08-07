@@ -1,0 +1,19 @@
+//Controller Start//
+$validator = Validator::make($request->all(), [
+            'name' => 'required|unique:infix_currencies|max:25',
+        ]);
+        if ($validator->fails()) {
+            return redirect('setup')
+                ->withErrors($validator)
+                ->withInput();
+        }
+//Controller End//
+
+//View Start//
+<input type="text" class="form-control{{ @$errors->has('name') ? ' is-invalid' : '' }}" name="name">
+           @if ($errors->has('name'))
+                <span class="invalid-feedback" role="alert">
+                      <strong>{{ @$errors->first('name') }}</strong>
+                </span>
+           @endif
+//View End//
