@@ -1,6 +1,6 @@
 //Controller Start//
 $validator = Validator::make($request->all(), [
-            'name' => 'required|unique:currencies|max:25',
+            'name' => 'required|unique:member_table,name|max:25',
         ]);
         if ($validator->fails()) {
             return redirect('setup')
